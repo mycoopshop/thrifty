@@ -1,0 +1,25 @@
+{
+  "name": "thrifty",
+  "version": "0.1.0",
+  "description": "Freedom via fiscal responsibility.",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron index.js"
+  },
+  "keywords": [
+    "budget",
+    "charts"
+  ],
+  "dependencies": {
+    "electron": "1",
+    "express": "4",
+    "ejs": 2,
+    "morgan": "1",
+    "turbolinks": "5",
+    "jquery": "3",
+    "popper.js": "1",
+    "bootstrap": "4.0.0-beta"
+  },
+  "author": "Andy Bettisworth <andy@accreu.com>",
+  "license": "MIT"
+}
