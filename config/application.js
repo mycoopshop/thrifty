@@ -1,10 +1,13 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 
 let port = 53001
 
-app.get("/", (req, res) => {
-  res.status(200).send('Hello, friend!')
+app.use(express.static(path.join(__dirname, '/../app/views')))
+
+app.get('/', (req, res) => {
+  res.redirect('/hello.html')
 })
 
 if (!module.parent) {
