@@ -7,11 +7,11 @@ const desktop_app = electron.app
 const path = require('path')
 const server_socket = path.join(__dirname, '/../tmp/server.sock')
 
-let main_window = null
+let win = null
 
 desktop_app.on('ready', () => {
   var {width, height} = eletron.screen.getPrimaryDisplay().workAreaSize
-  var main_window = new BrowserWindow({
+  var win = new BrowserWindow({
     width: width/2,
     height: height,
     center: true,
@@ -21,6 +21,7 @@ desktop_app.on('ready', () => {
 
   web_app.get("/", (req, res) => {
     res.send("Hello, friend.")
+    win
   })
 
   web_app.listen(server_socket, () => {
@@ -42,17 +43,17 @@ desktop_app.on('ready', () => {
   // TODO: transition to listening for a socket under tmp/sockets/server...
   web_app.stdout.on('data', (data) => {
     // TODO: try transition to sockets to avoid port duplication.
-    main_window.loadURL('http://localhost:4000')
-    main_window.on('ready-to-show', () => {
-      main_window.show()
+    win.loadURL('http://localhost:4000')
+    win.on('ready-to-show', () => {
+      win.show()
     })
   })
 
   //
   // If the main electron window closes, close the express app and quit.
   //
-  main_window.on('closed', () => {
-    main_window = null
+  win.on('closed', () => {
+    win = null
     web_app.kill()
     desktop_app.quit()
   })
