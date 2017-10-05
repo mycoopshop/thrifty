@@ -5,6 +5,7 @@ const child_process = require('child_process')
 const path = require('path')
 const fs = require('fs')
 
+let title = "Thrifty"
 let port = 53001
 let main_window = null
 
@@ -15,7 +16,7 @@ desktop_app.on('ready', () => {
     height: height,
     center: true,
     show: false,
-    title: "Thrifty"
+    title: title
   })
 
   let web_app_path = path.join(__dirname, '/config/application.js')
