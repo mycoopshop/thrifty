@@ -7,14 +7,15 @@
     "start": "electron index.js"
   },
   "keywords": [
+    "desktop",
     "budget",
     "charts"
   ],
   "dependencies": {
     "electron": "1",
     "express": "4",
-    "ejs": 2,
     "morgan": "1",
+    "ejs": "2",
     "turbolinks": "5",
     "jquery": "3",
     "popper.js": "1",
