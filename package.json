@@ -2,9 +2,9 @@
   "name": "thrifty",
   "version": "0.1.0",
   "description": "Freedom via fiscal responsibility.",
-  "main": "config/application.js",
+  "main": "index.js",
   "scripts": {
-    "start": "electron config/application.js"
+    "start": "electron index.js"
   },
   "keywords": [
     "desktop",
