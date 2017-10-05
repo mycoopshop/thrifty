@@ -25,19 +25,16 @@ desktop_app.on('ready', () => {
   //
   // If our express app throws an error, stop the electron app.
   //
-  web_app.on('error', (err) => {
-    console.log(err)
-    desktop_app.quit()
-  })
-
-  web_app.on('message', (err) => {
-    console.log(err)
+  web_app.stderr.on('data', (err) => {
+    console.log(err.toString())
     desktop_app.quit()
   })
 
   //
   // Listen for a server pid file pointing to a running express app.
   // Once a pid is detected, load the express app within the electron app.
+  //
+  // Note: 300 miliseconds is a minimum delay required by Express.js app.
   //
   fs.watchFile(pid_path, { interval: 300 }, (curr, prev) => {
     if (curr.blksize > 0) {
@@ -54,6 +51,7 @@ desktop_app.on('ready', () => {
   main_window.on('closed', () => {
     web_app.kill()
     desktop_app.quit()
+    fs.unlinkSync(pid_path)
   })
 
   //
