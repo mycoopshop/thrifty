@@ -8,5 +8,5 @@ app.get("/", (req, res) => {
 })
 
 app.listen(server_socket, () => {
-  console.log('Running express.js app on port 3000')
-}
+  console.log('Running express.js app at ./tmp/server.sock')
+})
