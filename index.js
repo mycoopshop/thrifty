@@ -1,9 +1,7 @@
 const electron = require('electron')
 const desktop_app = electron.app
 const BrowserWindow = electron.BrowserWindow
-const child_process = require('child_process')
 const path = require('path')
-const fs = require('fs')
 
 let main_window = null
 
