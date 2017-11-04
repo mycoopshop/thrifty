@@ -63,7 +63,8 @@ app.use('/assets/js', express.static(base + '/node_modules/turbolinks/dist'))
  * Middleware
  */
 
-app.use(express.static(path.join(__dirname, '/../app/views')))
+app.use(require(base + '/lib/middleware/json_body_parser'))
+app.use(require(base + '/lib/middleware/urlencoded_body_parser'))
 
 /**
  * Routes
@@ -72,6 +73,13 @@ app.use(express.static(path.join(__dirname, '/../app/views')))
 app.get('/', (req, res) => {
   res.render('hello')
 })
+
+/**
+ * Error handlers
+ */
+
+app.use(require(base + '/lib/middleware/page_not_found'))
+app.use(require(base + '/lib/middleware/render_error'))
 
 /**
  * Start server
