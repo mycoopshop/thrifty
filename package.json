@@ -4,7 +4,8 @@
   "description": "Freedom via fiscal responsibility.",
   "main": "index.js",
   "scripts": {
-    "start": "electron index.js"
+    "start": "electron index.js",
+    "setup": "npm install"
   },
   "keywords": [
     "desktop",
@@ -19,7 +20,11 @@
     "turbolinks": "5",
     "jquery": "3",
     "popper.js": "1",
+    "sqlite3": "3",
     "bootstrap": "4.0.0-beta"
+  },
+  "engines": {
+    "node": ">=8"
   },
   "author": "Andy Bettisworth <andy@accreu.com>",
   "license": "MIT"
