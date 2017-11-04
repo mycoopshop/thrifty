@@ -12,8 +12,6 @@ Changes are categorized as follows:
 
 ## [Unreleased]
 
-## 2017-10-04, Version 0.1.0 (Unstable)
-
 * 1 minor enhancement:
 
   * Initialized project
