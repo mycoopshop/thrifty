@@ -151,8 +151,18 @@ app.use(require(base + '/lib/middleware/render_error'))
  */
 
 if (module === require.main) {
-  app.listen(port, () => {
+  const server = app.listen(port, () => {
     console.log(`Running express.js app on port ${port}`)
+  })
+  process.on('SIGINT', () => {
+    server.close(() => {
+      app.locals.db.close()
+    })
+  })
+  process.on('SIGTERM', () => {
+    server.close(() => {
+      app.locals.db.close()
+    })
   })
 }
 
