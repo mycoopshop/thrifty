@@ -16,17 +16,7 @@
       <section>
         <div class="text-center my-5">
           <h3 id="balance" onclick="show_balance_form()" style="cursor:pointer;">
-            Balance:
-            <% if (currency == 0) { %>
-              <i class="fa fa-bitcoin"></i>
-            <% } else if (currency == 1) { %>
-              <i class="fa fa-dollar"></i>
-            <% } else if (currency == 2) { %>
-              <i class="fa fa-euro"></i>
-            <% } else { %>
-              <i class="fa fa-bitcoin"></i>
-            <% } %>
-              <%- balance.toLocaleString() %><br/>
+            Balance: <%- currency_icon(currency) %> <%- balance.toLocaleString() %><br/>
             <small class="text-muted">
               (balance / total_outflow ) = <%- months_left %> months
             </small>
@@ -76,7 +66,10 @@
               <tr>
                 <td>
                 <td <% if (cashflows[i].amount < 0) { %>class="text-danger"<% } %>>
-                  <span class="pull-right">$ <%- cashflows[i].amount.toLocaleString() %></span>
+                  <span class="pull-right">
+                    <%- currency_icon(currency) %>
+                    <%- cashflows[i].amount.toLocaleString() %>
+                  </span>
                 </td>
                 <td><%- cashflows[i].description %></td>
                 <td width="50px;" class="text-muted">
@@ -95,7 +88,10 @@
                 <b><span class="pull-right">Total Inflow:</span></b>
               </td>
               <td>
-                <span class="pull-right">$ <%- total_inflow.toLocaleString() %>/mo</span>
+                <span class="pull-right">
+                  <%- currency_icon(currency) %>
+                  <%- total_inflow.toLocaleString() %>/mo
+                </span>
               </td>
               <td></td>
               <td></td>
@@ -106,7 +102,10 @@
                 <b><span class="pull-right">Total Outflow:</span></b>
               </td>
               <td>
-                <span class="pull-right text-danger">$ <%- total_outflow.toLocaleString() %>/mo</span>
+                <span class="pull-right text-danger">
+                  <%- currency_icon(currency) %>
+                  <%- total_outflow.toLocaleString() %>/mo
+                </span>
               </td>
               <td></td>
               <td></td>
@@ -117,7 +116,12 @@
                 <b><span class="pull-right">Netflow:</span></b>
               </td>
               <td>
-                <b><span class="pull-right">$ <%- netflow.toLocaleString() %>/mo</span></b>
+                <b>
+                  <span class="pull-right">
+                    <%- currency_icon(currency) %>
+                    <%- netflow.toLocaleString() %>/mo
+                  </span>
+                </b>
               </td>
               <td></td>
               <td></td>
@@ -134,7 +138,9 @@
         <div class="col-12 col-sm-6">
           <h4 class="text-center">
             New Cashflow Form<br/>
-            <small class="text-muted">in $ per month</small>
+            <small class="text-muted">
+              in <%- currency_icon(currency) %> per month
+            </small>
           </h4>
 
           <form action="/cashflows" method="post" class="text-center">

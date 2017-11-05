@@ -34,6 +34,7 @@ app.locals.base = base
 app.locals.env = env
 app.locals.views = views
 app.locals.db = require('./db')(app)
+app.locals.currency_icon = require(base + '/app/helpers/currency_icon')
 
 /**
  * Settings
