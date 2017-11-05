@@ -16,7 +16,10 @@
       <section>
         <div class="text-center my-5">
           <h3 id="balance" onclick="show_balance_form()" style="cursor:pointer;">
-            Balance: $ <%- balance.amount.toLocaleString() %>
+            Balance: $ <%- balance.toLocaleString() %><br/>
+            <small class="text-muted">
+              (balance / total_outflow ) = <%- months_left %> months
+            </small>
           </h3>
           <form id="balance-form"
                 action="/balance"

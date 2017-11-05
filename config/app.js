@@ -83,9 +83,11 @@ app.get('/', (req, res, next) => {
   req.app.locals.db.get("SELECT amount FROM balance WHERE id=0;", (err, row) => {
     req.app.locals.db.all("SELECT id, amount, description FROM cashflows;", (err, rows) => {
       if (err) { next(err) }
+      let balance = row.amount
       let total_inflow = 0
       let total_outflow = 0
       let netflow = 0
+      let months_left = 3
       for (let i=0; i<rows.length; i++) {
         if (rows[i].amount > 0 ) {
           netflow += rows[i].amount
@@ -95,12 +97,14 @@ app.get('/', (req, res, next) => {
           total_outflow += rows[i].amount
         }
       }
+      months_left = Math.round(balance / Math.abs(total_outflow))
       res.render('hello', {
-        balance: row,
+        balance: balance,
         cashflows: rows,
         total_inflow: total_inflow,
         total_outflow: total_outflow,
-        netflow: netflow
+        netflow: netflow,
+        months_left: months_left
       })
     })
   })
