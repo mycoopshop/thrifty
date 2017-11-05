@@ -60,6 +60,12 @@ app.use('/assets', express.static(base + '/node_modules/bootstrap/dist'))
 app.use('/assets/js', express.static(base + '/node_modules/turbolinks/dist'))
 
 /**
+ * Initializers
+ */
+
+require(base + '/config/initializers/migrations')(app)
+
+/**
  * Middleware
  */
 
