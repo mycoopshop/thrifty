@@ -12,12 +12,21 @@ Changes are categorized as follows:
 
 ## [Unreleased]
 
-* 3 major enhancements:
+* 9 major enhancements:
 
    * deps: add bootstrap
    * deps: add sqlite3
    * deps: add d3
+   * db: add migrations handler
+   * db: add create_table_container
+   * db: add create_table_items
+   * web: add Container creation
+   * web: add Item creation, deletion
+   * web: add currency icon helper
 
-* 1 minor enhancement:
+* 4 minor enhancements:
 
   * Initialized project
+  * Set view engine to ejs
+  * Set port to 53001
+  * readme: Added getting started section
