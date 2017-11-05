@@ -32,15 +32,21 @@
             </small>
           </h3>
           <form id="balance-form"
-                action="/balance"
+                action="/users"
                 method="post"
                 class="form form-inline"
                 style="display:none;">
             <select name="currency"
                    class="form-control">
-              <option value="0" selected>Bitcoins</option>
-              <option value="1">Dollars</option>
-              <option value="2">Euros</option>
+              <option value="0" <% if (currency == 0) { %>selected<% } %>>
+                Bitcoins
+              </option>
+              <option value="1" <% if (currency == 1) { %>selected<% } %>>
+                Dollars
+              </option>
+              <option value="2" <% if (currency == 2) { %>selected<% } %>>
+                Euros
+              </option>
             </select>
             <input type="number"
                    name="balance"

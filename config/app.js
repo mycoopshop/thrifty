@@ -135,13 +135,12 @@ app.delete('/cashflows/:id', (req, res) => {
     res.redirect('/')
   })
 })
-app.post('/balance', (req, res) => {
-  req.app.locals.db.run(`UPDATE users SET balance=${req.body.balance} WHERE id=0;`, () =>  {
-    res.redirect('/')
-  })
-})
-app.post('/currency', (req, res) => {
-  req.app.locals.db.run(`UPDATE users SET currency=${req.body.currency} WHERE id=0;`, () =>  {
+app.post('/users', (req, res) => {
+  req.app.locals.db.run(`
+    UPDATE users SET
+    balance=${req.body.balance},
+    currency=${req.body.currency}
+    WHERE id=0;`, () =>  {
     res.redirect('/')
   })
 })
