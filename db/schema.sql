@@ -8,6 +8,8 @@ CREATE TABLE cashflows (
   description text
 );
 
-CREATE TABLE balance (
-  amount integer DEFAULT 0
+CREATE TABLE users (
+  id integer UNIQUE,
+  balance integer DEFAULT 0,
+  currency integer DEFAULT 0
 );
