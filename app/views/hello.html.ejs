@@ -21,6 +21,7 @@
               <span class="pull-right">Amount</span>
             </th>
             <th>Description</th>
+            <th></th>
           </tr>
         </thead>
 
@@ -32,6 +33,14 @@
                 <b><span class="pull-right">$ <%- cashflows[i].amount %></span></b>
               </td>
               <td><%- cashflows[i].description %></td>
+              <td width="50px;" class="text-muted">
+                <button type="button"
+                        onclick="remove_cashflow(<%- cashflows[i].id %>);"
+                        class="btn btn-sm btn-link"
+                        style="color:#DDD;cursor:pointer;">
+                  <i class="fa fa-close"></i>
+                </button>
+              </td>
             </tr>
           <% } %>
 
@@ -43,6 +52,7 @@
               <span class="pull-right">$ <%- total_inflow %>/mo</span>
             </td>
             <td></td>
+            <td></td>
           </tr>
 
           <tr>
@@ -53,6 +63,7 @@
               <span class="pull-right text-danger">$ <%- total_outflow %>/mo</span>
             </td>
             <td></td>
+            <td></td>
           </tr>
 
           <tr>
@@ -62,6 +73,7 @@
             <td>
               <b><span class="pull-right">$ <%- netflow %>/mo</span></b>
             </td>
+            <td></td>
             <td></td>
           </tr>
         </tbody>
@@ -106,4 +118,16 @@
   </body>
 
   <script src="/assets/js/pie_chart.js"></script>
+  <script>
+    function remove_cashflow(id) {
+      let req = new XMLHttpRequest()
+      req.onreadystatechange = () => {
+        if (req.readyState === XMLHttpRequest.DONE) {
+          window.location.reload(true)
+        }
+      }
+      req.open("DELETE", `/cashflows/` + id)
+      req.send()
+    }
+  </script>
 </html>

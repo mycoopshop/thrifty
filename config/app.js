@@ -122,8 +122,9 @@ app.post('/cashflows', (req, res) => {
   }
 })
 app.delete('/cashflows/:id', (req, res) => {
-  // remove cashflow
-  res.redirect('/')
+  req.app.locals.db.run(`DELETE FROM cashflows WHERE id=${req.params.id};`, () => {
+    res.redirect('/')
+  })
 })
 
 /**
