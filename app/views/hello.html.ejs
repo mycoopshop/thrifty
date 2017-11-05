@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Thrifty</title>
+    <meta name="description" content="Freedom via fiscal responsibility.">
+    <%- include(views + '/shared/head.html.ejs') %>
+  </head>
+  <body>
+    <header class="mt-3">
+      <h1 class="text-center">Thrifty</h1>
+    </header>
+
+    <main class="container my-5">
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th width="200px;"></th>
+            <th width="110px;">
+              <span class="pull-right">Amount</span>
+            </th>
+            <th>Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td></td>
+            <td class="pull-right">
+              <span class="pull-right text-danger">-$1,100</span>
+            </td>
+            <td>Apartment rent</td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td>
+              <span class="pull-right">$4,000</span>
+            </td>
+            <td>Web development</td>
+          </tr>
+
+          <tr>
+            <td>
+              <b><span class="pull-right">Total Inflow:</span></b>
+            </td>
+            <td>
+              <span class="pull-right">$4,000/mo</span>
+            </td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>
+              <b><span class="pull-right">Total Outflow:</span></b>
+            </td>
+            <td>
+              <span class="pull-right text-danger">-$1,100/mo</span>
+            </td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>
+              <b><span class="pull-right">Netflow:</span></b>
+            </td>
+            <td>
+              <b><span class="pull-right">$2,900/mo</span></b>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>
