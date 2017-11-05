@@ -15,7 +15,7 @@
         <thead>
           <tr>
             <th width="200px;"></th>
-            <th width="110px;">
+            <th width="120px;">
               <span class="pull-right">Amount</span>
             </th>
             <th>Description</th>
@@ -72,26 +72,37 @@
       </table>
     </main>
 
-    <footer class="container text-right">
-      <button type="button"
-              onclick="add_cashflow();"
-              class="btn btn-lg btn-light"
-              style="cursor:pointer;">
-        <i class="fa fa-plus"></i>
-      </button>
+    <hr/>
+
+    <footer class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-6">
+          <h4>New Cashflow Form</h4>
+
+          <form action="/cashflows" method="post" class="text-center">
+            <div class="form-group">
+              <input id="cashflows-amount"
+                     type="number"
+                     name="amount"
+                     placeholder="Amount"
+                     class="form-control"></input>
+            </div>
+            <div class="form-group">
+              <input id="cashflows-description"
+                     type="text"
+                     name="description"
+                     placeholder="Description"
+                     class="form-control"></input>
+            </div>
+            <button type="submit"
+                    class="btn btn-lg btn-light"
+                    style="cursor:pointer;">
+                    <i class="fa fa-plus"></i>
+            </button>
+          </form>
+
+        </div>
+      </div>
     </footer>
   </body>
-
-  <script>
-    function add_cashflow() {
-      let req = new XMLHttpRequest()
-      req.onreadystatechange = () => {
-        if (req.readyState === XMLHttpRequest.DONE) {
-          window.location.reload(true)
-        }
-      }
-      req.open("POST", "/cashflows")
-      req.send()
-    }
-  </script>
 </html>
