@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "electron index.js",
-    "setup": "npm install"
+    "rebuild": "electron-rebuild -f -w sqlite3",
+    "setup": "npm install && npm run rebuild"
   },
   "keywords": [
     "desktop",
@@ -22,7 +23,8 @@
     "popper.js": "1",
     "font-awesome": "4",
     "bootstrap": "4.0.0-beta",
-    "sqlite3": "3"
+    "sqlite3": "3",
+    "electron-rebuild": "1"
   },
   "engines": {
     "node": ">=8"
