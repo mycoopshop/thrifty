@@ -10,8 +10,10 @@
   },
   "keywords": [
     "desktop",
-    "budget",
-    "charts"
+    "finances",
+    "cashflow",
+    "wealth",
+    "bitcoin"
   ],
   "dependencies": {
     "electron": "1",
