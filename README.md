@@ -1,5 +1,7 @@
 # Thrifty
 
+Freedom via fiscal responsibility. Following the simple rule of having more cashflow coming in rather than out optimizes your time spent living life rather than earning one more dollar. A side goal of this project is to empower individuals to take more creative risks in their career.
+
 ## Getting started
 
 Run the following npm tasks to get started:
