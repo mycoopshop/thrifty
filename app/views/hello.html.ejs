@@ -13,71 +13,79 @@
     <main class="container mt-5">
       <section id="pie_chart"></section>
 
-      <table class="table table-sm">
-        <thead>
-          <tr>
-            <th width="200px;"></th>
-            <th width="120px;">
-              <span class="pull-right">Amount</span>
-            </th>
-            <th>Description</th>
-            <th></th>
-          </tr>
-        </thead>
+      <section>
+        <div class="text-center my-5">
+          <h3>Balance: $ <%- balance %></h3>
+        </div>
+      </section>
 
-        <tbody>
-          <% for (let i=0; i < cashflows.length; i++) { %>
+      <section>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th width="200px;"></th>
+              <th width="120px;">
+                <span class="pull-right">Amount</span>
+              </th>
+              <th>Description</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% for (let i=0; i < cashflows.length; i++) { %>
+              <tr>
+                <td>
+                <td <% if (cashflows[i].amount < 0) { %>class="text-danger"<% } %>>
+                  <span class="pull-right">$ <%- cashflows[i].amount %></span>
+                </td>
+                <td><%- cashflows[i].description %></td>
+                <td width="50px;" class="text-muted">
+                  <button type="button"
+                          onclick="remove_cashflow(<%- cashflows[i].id %>);"
+                          class="btn btn-sm btn-link"
+                          style="color:#DDD;cursor:pointer;">
+                    <i class="fa fa-close"></i>
+                  </button>
+                </td>
+              </tr>
+            <% } %>
+
             <tr>
               <td>
-              <td <% if (cashflows[i].amount < 0) { %>class="text-danger"<% } %>>
-                <b><span class="pull-right">$ <%- cashflows[i].amount %></span></b>
+                <b><span class="pull-right">Total Inflow:</span></b>
               </td>
-              <td><%- cashflows[i].description %></td>
-              <td width="50px;" class="text-muted">
-                <button type="button"
-                        onclick="remove_cashflow(<%- cashflows[i].id %>);"
-                        class="btn btn-sm btn-link"
-                        style="color:#DDD;cursor:pointer;">
-                  <i class="fa fa-close"></i>
-                </button>
+              <td>
+                <span class="pull-right">$ <%- total_inflow %>/mo</span>
               </td>
+              <td></td>
+              <td></td>
             </tr>
-          <% } %>
 
-          <tr>
-            <td>
-              <b><span class="pull-right">Total Inflow:</span></b>
-            </td>
-            <td>
-              <span class="pull-right">$ <%- total_inflow %>/mo</span>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
+            <tr>
+              <td>
+                <b><span class="pull-right">Total Outflow:</span></b>
+              </td>
+              <td>
+                <span class="pull-right text-danger">$ <%- total_outflow %>/mo</span>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
 
-          <tr>
-            <td>
-              <b><span class="pull-right">Total Outflow:</span></b>
-            </td>
-            <td>
-              <span class="pull-right text-danger">$ <%- total_outflow %>/mo</span>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td>
-              <b><span class="pull-right">Netflow:</span></b>
-            </td>
-            <td>
-              <b><span class="pull-right">$ <%- netflow %>/mo</span></b>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+            <tr>
+              <td>
+                <b><span class="pull-right">Netflow:</span></b>
+              </td>
+              <td>
+                <b><span class="pull-right">$ <%- netflow %>/mo</span></b>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
     </main>
 
     <hr/>

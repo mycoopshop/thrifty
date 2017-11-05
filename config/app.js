@@ -80,25 +80,28 @@ app.use(require(base + '/lib/middleware/urlencoded_body_parser'))
  */
 
 app.get('/', (req, res, next) => {
-  req.app.locals.db.all("SELECT id, amount, description FROM cashflows;", (err, rows) => {
-    if (err) { next(err) }
-    let total_inflow = 0
-    let total_outflow = 0
-    let netflow = 0
-    for (let i=0; i<rows.length; i++) {
-      if (rows[i].amount > 0 ) {
-        netflow += rows[i].amount
-        total_inflow += rows[i].amount
-      } else {
-        netflow += rows[i].amount
-        total_outflow += rows[i].amount
+  req.app.locals.db.get("SELECT amount FROM balance WHERE id=0;", (err, row) => {
+    req.app.locals.db.all("SELECT id, amount, description FROM cashflows;", (err, rows) => {
+      if (err) { next(err) }
+      let total_inflow = 0
+      let total_outflow = 0
+      let netflow = 0
+      for (let i=0; i<rows.length; i++) {
+        if (rows[i].amount > 0 ) {
+          netflow += rows[i].amount
+          total_inflow += rows[i].amount
+        } else {
+          netflow += rows[i].amount
+          total_outflow += rows[i].amount
+        }
       }
-    }
-    res.render('hello', {
-      cashflows: rows,
-      total_inflow: total_inflow,
-      total_outflow: total_outflow,
-      netflow: netflow
+      res.render('hello', {
+        balance: row,
+        cashflows: rows,
+        total_inflow: total_inflow,
+        total_outflow: total_outflow,
+        netflow: netflow
+      })
     })
   })
 })
