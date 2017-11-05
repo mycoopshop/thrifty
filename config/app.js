@@ -33,6 +33,7 @@ app.locals.port = port
 app.locals.base = base
 app.locals.env = env
 app.locals.views = views
+app.locals.db = require('./db')(app)
 
 /**
  * Settings
