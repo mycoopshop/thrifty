@@ -24,7 +24,8 @@
     "font-awesome": "4",
     "bootstrap": "4.0.0-beta",
     "sqlite3": "3",
-    "electron-rebuild": "1"
+    "electron-rebuild": "1",
+    "d3": "4"
   },
   "engines": {
     "node": ">=8"

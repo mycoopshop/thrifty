@@ -12,6 +12,12 @@ Changes are categorized as follows:
 
 ## [Unreleased]
 
+* 3 major enhancements:
+
+   * deps: add bootstrap
+   * deps: add sqlite3
+   * deps: add d3
+
 * 1 minor enhancement:
 
   * Initialized project
