@@ -12,6 +12,8 @@ Changes are categorized as follows:
 
 ## [Unreleased]
 
+## 2017-11-05, Version 1.0.0
+
 * 10 major enhancements:
 
    * deps: add bootstrap
