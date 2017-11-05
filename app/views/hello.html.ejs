@@ -18,7 +18,12 @@
           <h3 id="balance" onclick="show_balance_form()" style="cursor:pointer;">
             Balance: <%- currency_icon(currency) %> <%- balance %><br/>
             <small class="text-muted">
-              (balance / total_outflow ) = <%- months_left %> months
+              (balance / total_outflow ) =
+              <% if (months_left) { %>
+                <%- months_left %> months
+              <% } else { %>
+                0 months
+              <% } %>
             </small>
           </h3>
           <form id="balance-form"
