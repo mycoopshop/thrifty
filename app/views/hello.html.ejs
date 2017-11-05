@@ -123,7 +123,7 @@
               </td>
               <td>
                 <b>
-                  <span class="pull-right">
+                  <span class="pull-right <% if (netflow < 0) { %>text-danger<% } %>">
                     <%- currency_icon(currency) %>
                     <% if (currency == 0) { %>
                       <%- netflow.toFixed(5) %>/mo
