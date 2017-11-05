@@ -10,7 +10,7 @@
       <h1 class="text-center">Thrifty</h1>
     </header>
 
-    <main class="container my-5">
+    <main class="container mt-5">
       <table class="table table-sm">
         <thead>
           <tr>
@@ -71,5 +71,27 @@
         </tbody>
       </table>
     </main>
+
+    <footer class="container text-right">
+      <button type="button"
+              onclick="add_cashflow();"
+              class="btn btn-lg btn-light"
+              style="cursor:pointer;">
+        <i class="fa fa-plus"></i>
+      </button>
+    </footer>
   </body>
+
+  <script>
+    function add_cashflow() {
+      let req = new XMLHttpRequest()
+      req.onreadystatechange = () => {
+        if (req.readyState === XMLHttpRequest.DONE) {
+          window.location.reload(true)
+        }
+      }
+      req.open("POST", "/cashflows")
+      req.send()
+    }
+  </script>
 </html>
