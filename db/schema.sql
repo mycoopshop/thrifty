@@ -7,3 +7,7 @@ CREATE TABLE cashflows (
   amount integer DEFAULT 0,
   description text
 );
+
+CREATE TABLE balance (
+  amount integer DEFAULT 0
+);
