@@ -71,7 +71,16 @@ app.use(require(base + '/lib/middleware/urlencoded_body_parser'))
  */
 
 app.get('/', (req, res) => {
+  // read all cashflows
   res.render('hello')
+})
+app.post('/cashflows', (req, res) => {
+  // create cashflow
+  res.redirect('/')
+})
+app.delete('/cashflows/:id', (req, res) => {
+  // remove cashflow
+  res.redirect('/')
 })
 
 /**
