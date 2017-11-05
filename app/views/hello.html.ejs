@@ -58,8 +58,8 @@
         <table class="table table-sm">
           <thead>
             <tr>
-              <th width="200px;"></th>
-              <th width="120px;">
+              <th width="120px;"></th>
+              <th width="170px;">
                 <span class="pull-right">Amount</span>
               </th>
               <th>Description</th>
@@ -96,7 +96,11 @@
               <td>
                 <span class="pull-right">
                   <%- currency_icon(currency) %>
-                  <%- total_inflow %>/mo
+                  <% if (currency == 0) { %>
+                    <%- total_inflow.toFixed(5) %> /mo
+                  <% } else { %>
+                    <%- total_inflow.toFixed(2) %> /mo
+                  <% } %>
                 </span>
               </td>
               <td></td>
@@ -110,7 +114,11 @@
               <td>
                 <span class="pull-right text-danger">
                   <%- currency_icon(currency) %>
-                  <%- total_outflow %>/mo
+                  <% if (currency == 0) { %>
+                    <%- total_outflow.toFixed(5) %> /mo
+                  <% } else { %>
+                    <%- total_outflow.toFixed(2) %> /mo
+                  <% } %>
                 </span>
               </td>
               <td></td>
@@ -126,9 +134,9 @@
                   <span class="pull-right <% if (netflow < 0) { %>text-danger<% } %>">
                     <%- currency_icon(currency) %>
                     <% if (currency == 0) { %>
-                      <%- netflow.toFixed(5) %>/mo
+                      <%- netflow.toFixed(5) %> /mo
                     <% } else { %>
-                      <%- netflow.toFixed(2) %>/mo
+                      <%- netflow.toFixed(2) %> /mo
                     <% } %>
                   </span>
                 </b>
