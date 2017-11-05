@@ -129,7 +129,7 @@ app.delete('/cashflows/:id', (req, res) => {
     res.redirect('/')
   })
 })
-app.put('/balance', (req, res) => {
+app.post('/balance', (req, res) => {
   req.app.locals.db.run(`UPDATE balance SET amount=${req.body.amount};`, () =>  {
     res.redirect('/')
   })
