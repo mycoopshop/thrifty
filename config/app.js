@@ -77,13 +77,32 @@ app.use(require(base + '/lib/middleware/urlencoded_body_parser'))
  * Routes
  */
 
-app.get('/', (req, res) => {
-  // read all cashflows
-  res.render('hello')
+app.get('/', (req, res, next) => {
+  req.app.locals.db.all("SELECT id, amount, description FROM cashflows;", (err, rows) => {
+    if (err) { next(err) }
+    res.render('hello', {
+      cashflows: rows
+    })
+  })
 })
 app.post('/cashflows', (req, res) => {
-  // create cashflow
-  res.redirect('/')
+  if (req.body.constructor === Object) {
+    let keys = Object.keys(req.body)
+    if (keys.includes('amount') && keys.includes('description')) {
+      req.app.locals.db.run(`
+        INSERT INTO cashflows (
+          amount,
+          description
+        ) VALUES (?, ?);
+      `, [req.body.amount, req.body.description], () => {
+        res.redirect('/')
+      })
+    } else {
+      res.sendStatus(400)
+    }
+  } else {
+    res.sendStatus(400)
+  }
 })
 app.delete('/cashflows/:id', (req, res) => {
   // remove cashflow
