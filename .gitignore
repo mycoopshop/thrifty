@@ -12,6 +12,7 @@
 
 # Ignore databases
 /db/*.sqlite
+/db/*.sqlite3
 
 # Ignore node dependencies
 node_modules

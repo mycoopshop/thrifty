@@ -23,21 +23,15 @@
         </thead>
 
         <tbody>
-          <tr>
-            <td></td>
-            <td class="pull-right">
-              <span class="pull-right text-danger">-$1,100</span>
-            </td>
-            <td>Apartment rent</td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td>
-              <span class="pull-right">$4,000</span>
-            </td>
-            <td>Web development</td>
-          </tr>
+          <% for (let i=0; i < cashflows.length; i++) { %>
+            <tr>
+              <td>
+              <td <% if (cashflows[i].amount < 0) { %>class="text-danger"<% } %>>
+                <b><span class="pull-right">$ <%- cashflows[i].amount %></span></b>
+              </td>
+              <td><%- cashflows[i].description %></td>
+            </tr>
+          <% } %>
 
           <tr>
             <td>
