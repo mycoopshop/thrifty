@@ -16,7 +16,17 @@
       <section>
         <div class="text-center my-5">
           <h3 id="balance" onclick="show_balance_form()" style="cursor:pointer;">
-            Balance: <i class="fa fa-bitcoin"></i> <%- balance.toLocaleString() %><br/>
+            Balance:
+            <% if (currency == 0) { %>
+              <i class="fa fa-bitcoin"></i>
+            <% } else if (currency == 1) { %>
+              <i class="fa fa-dollar"></i>
+            <% } else if (currency == 2) { %>
+              <i class="fa fa-euro"></i>
+            <% } else { %>
+              <i class="fa fa-bitcoin"></i>
+            <% } %>
+              <%- balance.toLocaleString() %><br/>
             <small class="text-muted">
               (balance / total_outflow ) = <%- months_left %> months
             </small>
@@ -26,9 +36,15 @@
                 method="post"
                 class="form form-inline"
                 style="display:none;">
+            <select name="currency"
+                   class="form-control">
+              <option value="0" selected>Bitcoins</option>
+              <option value="1">Dollars</option>
+              <option value="2">Euros</option>
+            </select>
             <input type="number"
-                   name="amount"
-                   value="<%- balance.amount %>"
+                   name="balance"
+                   value="<%- balance %>"
                    class="form-control"
                    autofocus></input>
             <button class="btn btn-md btn-light" style="cursor:pointer;">Update</button>

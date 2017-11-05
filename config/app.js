@@ -80,10 +80,11 @@ app.use(require(base + '/lib/middleware/urlencoded_body_parser'))
  */
 
 app.get('/', (req, res, next) => {
-  req.app.locals.db.get("SELECT amount FROM balance WHERE id=0;", (err, row) => {
+  req.app.locals.db.get("SELECT balance,currency FROM users WHERE id=0;", (err, row) => {
     req.app.locals.db.all("SELECT id, amount, description FROM cashflows;", (err, rows) => {
       if (err) { next(err) }
-      let balance = row.amount
+      let currency = row.currency
+      let balance = row.balance
       let total_inflow = 0
       let total_outflow = 0
       let netflow = 0
@@ -99,6 +100,7 @@ app.get('/', (req, res, next) => {
       }
       months_left = Math.round(balance / Math.abs(total_outflow))
       res.render('hello', {
+        currency: currency,
         balance: balance,
         cashflows: rows,
         total_inflow: total_inflow,
@@ -134,7 +136,12 @@ app.delete('/cashflows/:id', (req, res) => {
   })
 })
 app.post('/balance', (req, res) => {
-  req.app.locals.db.run(`UPDATE balance SET amount=${req.body.amount};`, () =>  {
+  req.app.locals.db.run(`UPDATE users SET balance=${req.body.balance} WHERE id=0;`, () =>  {
+    res.redirect('/')
+  })
+})
+app.post('/currency', (req, res) => {
+  req.app.locals.db.run(`UPDATE users SET currency=${req.body.currency} WHERE id=0;`, () =>  {
     res.redirect('/')
   })
 })
