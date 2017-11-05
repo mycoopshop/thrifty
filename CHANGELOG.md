@@ -18,10 +18,11 @@ Changes are categorized as follows:
    * deps: add sqlite3
    * deps: add d3
    * db: add migrations handler
-   * db: add create_table_container
-   * db: add create_table_items
-   * web: add Container creation
-   * web: add Item creation, deletion
+   * db: add create_table_cashflows
+   * db: add create_table_users
+   * web: add User balance,currency form
+   * web: add Cashflow amount,description form
+   * web: add Summary total_inflow, total_outflow, netflow
    * web: add currency icon helper
 
 * 4 minor enhancements:
