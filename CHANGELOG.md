@@ -12,6 +12,8 @@ Changes are categorized as follows:
 
 ## [Unreleased]
 
+## 2017-11-20, Version 1.1.0
+
 * 3 minor enhancements:
 
   * Add initial test
