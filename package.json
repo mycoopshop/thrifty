@@ -8,7 +8,8 @@
     "rebuild": "electron-rebuild -f -w sqlite3",
     "setup": "npm install && npm run rebuild",
     "test": "mocha --no-colors",
-    "test-watch": "mocha --watch --no-colors"
+    "test-watch": "mocha --watch --no-colors",
+    "g:migration": "./node_modules/.bin/g_migration"
   },
   "keywords": [
     "desktop",
@@ -18,18 +19,21 @@
     "bitcoin"
   ],
   "dependencies": {
-    "electron": "1",
-    "express": "4",
-    "morgan": "1",
-    "ejs": "2",
-    "turbolinks": "5",
-    "jquery": "3",
-    "popper.js": "1",
-    "font-awesome": "4",
     "bootstrap": "4.0.0-beta",
-    "sqlite3": "3",
+    "d3": "4",
+    "ejs": "2",
+    "electron": "^1.8.1",
     "electron-rebuild": "1",
-    "d3": "4"
+    "express": "^4.16.2",
+    "font-awesome": "4",
+    "jquery": "3",
+    "morgan": "1",
+    "popper.js": "^1.13.0",
+    "sqlite3": "3",
+    "turbolinks": "5"
+  },
+  "devDependencies": {
+    "g-migration": "^1.1.0"
   },
   "engines": {
     "node": ">=8"
