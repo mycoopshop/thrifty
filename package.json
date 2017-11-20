@@ -6,7 +6,9 @@
   "scripts": {
     "start": "electron index.js",
     "rebuild": "electron-rebuild -f -w sqlite3",
-    "setup": "npm install && npm run rebuild"
+    "setup": "npm install && npm run rebuild",
+    "test": "mocha --no-colors",
+    "test-watch": "mocha --watch --no-colors"
   },
   "keywords": [
     "desktop",
