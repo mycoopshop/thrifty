@@ -33,7 +33,7 @@
     "turbolinks": "5"
   },
   "devDependencies": {
-    "g-migration": "^1.1.0"
+    "g-migration": "^1.4.0"
   },
   "engines": {
     "node": ">=8"
