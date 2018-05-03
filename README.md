@@ -1,6 +1,6 @@
 # Thrifty
 
-Find freedom via fiscal responsibility. Following the simple rule of having more cashflow coming in rather than out optimizes your time spent living life rather than earning one more bitcoin. A side goal of this project is to empower individuals to take more creative risks in their career.
+Track cashflow for simple finance management.
 
 ## Getting started
 

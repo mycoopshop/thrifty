@@ -12,11 +12,13 @@ Changes are categorized as follows:
 
 ## [Unreleased]
 
-* 3 minor enhancements:
+* 5 minor enhancements:
 
   * Add initial test
   * Update dependencies
   * deps: add g-migration
+  * docs: simplify readme
+  * deps: update
 
 ## 2017-11-05, Version 1.0.0
 

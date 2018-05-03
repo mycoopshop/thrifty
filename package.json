@@ -6,37 +6,31 @@
   "scripts": {
     "start": "electron index.js",
     "rebuild": "electron-rebuild -f -w sqlite3",
-    "setup": "npm install && npm run rebuild",
-    "test": "mocha --no-colors",
-    "test-watch": "mocha --watch --no-colors",
-    "g:migration": "./node_modules/.bin/g_migration"
+    "setup": "npm install && npm run rebuild"
   },
   "keywords": [
     "desktop",
     "finances",
     "cashflow",
-    "wealth",
-    "bitcoin"
+    "wealth"
   ],
   "dependencies": {
-    "bootstrap": "4.0.0-beta",
-    "d3": "4",
-    "ejs": "2",
-    "electron": "^1.8.1",
-    "electron-rebuild": "1",
+    "bootstrap": "^4.1.1",
+    "d3": "^5.1.0",
+    "ejs": "^2.5.9",
+    "electron": "^2.0.0",
     "express": "^4.16.2",
-    "font-awesome": "4",
-    "jquery": "3",
-    "morgan": "1",
-    "popper.js": "^1.13.0",
-    "sqlite3": "3",
-    "turbolinks": "5"
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
+    "sqlite3": "^4.0.0",
+    "turbolinks": "^5.1.1"
   },
   "devDependencies": {
-    "g-migration": "^1.4.0"
+    "electron-rebuild": "^1.7.3"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">= 8"
   },
   "author": "Andy Bettisworth <andy@accreu.com>",
   "license": "MIT"
