@@ -4,7 +4,7 @@ Find freedom via fiscal responsibility. Following the simple rule of having more
 
 ## Getting started
 
-Run the following npm tasks to get started:
+Run the following commands to get started:
 
     git clone https://github.com/wurde/thrifty
     cd thrifty
