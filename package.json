@@ -12,7 +12,8 @@
     "desktop",
     "finances",
     "cashflow",
-    "wealth"
+    "thrifty",
+    "electron"
   ],
   "dependencies": {
     "bootstrap": "^4.1.1",
