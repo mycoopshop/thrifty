@@ -35,5 +35,12 @@
     "node": ">= 8"
   },
   "author": "Andy Bettisworth <andy@accreu.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wurde/thrifty.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wurde/thrifty/issues"
+  }
 }
