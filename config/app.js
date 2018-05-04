@@ -83,79 +83,18 @@ app.use("/assets/js", express.static(base + "/app/assets/js"))
  * Routes
  */
 
-app.get("/", (req, res, next) => {
-  req.app.locals.db.get("SELECT balance,currency FROM users WHERE id=0;", (err, row) => {
-    req.app.locals.db.all("SELECT id, amount, description FROM cashflows;", (err, rows) => {
-      if (err) { next(err) }
-      let currency = row.currency
-      let balance = row.balance
-      let total_inflow = 0
-      let total_outflow = 0
-      let netflow = 0
-      let months_left = 3
-      for (let i=0; i<rows.length; i++) {
-        if (rows[i].amount > 0 ) {
-          netflow += rows[i].amount
-          total_inflow += rows[i].amount
-        } else {
-          netflow += rows[i].amount
-          total_outflow += rows[i].amount
-        }
-      }
-      months_left = Math.round(balance / Math.abs(total_outflow))
-      res.render("hello", {
-        currency: currency,
-        balance: balance,
-        cashflows: rows,
-        total_inflow: total_inflow,
-        total_outflow: total_outflow,
-        netflow: netflow,
-        months_left: months_left
-      })
-    })
-  })
-})
-app.post("/cashflows", (req, res) => {
-  if (req.body.constructor === Object) {
-    let keys = Object.keys(req.body)
-    if (keys.includes("amount") && keys.includes("description")) {
-      req.app.locals.db.run(`
-        INSERT INTO cashflows (
-          amount,
-          description
-        ) VALUES (?, ?);
-      `, [req.body.amount, req.body.description], () => {
-        res.redirect("/")
-      })
-    } else {
-      res.sendStatus(400)
-    }
-  } else {
-    res.sendStatus(400)
-  }
-})
-app.delete("/cashflows/:id", (req, res) => {
-  req.app.locals.db.run(`DELETE FROM cashflows WHERE id=${req.params.id};`, () => {
-    res.redirect("/")
-  })
-})
-app.post("/users", (req, res) => {
-  req.app.locals.db.run(`
-    UPDATE users SET
-    balance=${req.body.balance},
-    currency=${req.body.currency}
-    WHERE id=0;`, () =>  {
-    res.redirect("/")
-  })
-})
+debug("Mount routes")
+app.use("/", require("./routes/root_router")(app))
+app.use("/cashflows", require("./routes/cashflows_router")(app))
+app.use("/users", require("./routes/users_router")(app))
 
 /**
  * Error handlers
  */
 
 debug("Mount error handlers")
-app.use(require(base + "/lib/middleware/page_not_found"))
-app.use(require(base + "/lib/middleware/render_error"))
+app.use(require(base + "/lib/middleware/errors/page_not_found"))
+app.use(require(base + "/lib/middleware/errors/render_error"))
 
 /**
  * Start server
