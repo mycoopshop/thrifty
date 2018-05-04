@@ -9,7 +9,7 @@ const path = require("path")
 const ejs = require("ejs")
 
 /**
- * Initialize app
+ * Define app
  */
 
 const app = express()
