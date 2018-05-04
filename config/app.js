@@ -7,17 +7,20 @@
 const express = require("express")
 const path = require("path")
 const ejs = require("ejs")
+const debug = require("debug")("app.js")
 
 /**
  * Define app
  */
 
+debug("Define app")
 const app = express()
 
 /**
  * Constants
  */
 
+debug("Constants")
 const title = "Thrifty"
 const port = 53001
 const base = path.join(__dirname, "..")
@@ -28,6 +31,7 @@ const views = path.join(base, "/app/views")
  * Locals
  */
 
+debug("Locals")
 app.locals.title = title
 app.locals.port = port
 app.locals.base = base
@@ -40,21 +44,33 @@ app.locals.currency_icon = require(base + "/app/helpers/currency_icon")
  * Settings
  */
 
+debug("Settings")
 app.set("env", env)
 app.disable("x-powered-by")
+app.set("json spaces", 2)
 
 /**
  * View engine
  */
 
+debug("View engine")
 app.engine("html.ejs", ejs.renderFile)
 app.set("view engine", ".html.ejs")
 app.set("views", views)
 
 /**
+ * Middleware
+ */
+
+debug("Mount middleware")
+app.use(require(base + "/lib/middleware/json_body_parser"))
+app.use(require(base + "/lib/middleware/urlencoded_body_parser"))
+
+/**
  * Static assets
  */
 
+debug("Mount static assets")
 app.use("/assets", express.static(base + "/node_modules/jquery/dist"))
 app.use("/assets", express.static(base + "/node_modules/popper.js/dist/umd"))
 app.use("/assets", express.static(base + "/node_modules/font-awesome"))
@@ -62,19 +78,6 @@ app.use("/assets", express.static(base + "/node_modules/bootstrap/dist"))
 app.use("/assets/js", express.static(base + "/node_modules/turbolinks/dist"))
 app.use("/assets/js", express.static(base + "/node_modules/d3/build"))
 app.use("/assets/js", express.static(base + "/app/assets/js"))
-
-/**
- * Initializers
- */
-
-require(base + "/config/initializers/migrations")(app)
-
-/**
- * Middleware
- */
-
-app.use(require(base + "/lib/middleware/json_body_parser"))
-app.use(require(base + "/lib/middleware/urlencoded_body_parser"))
 
 /**
  * Routes
@@ -150,6 +153,7 @@ app.post("/users", (req, res) => {
  * Error handlers
  */
 
+debug("Mount error handlers")
 app.use(require(base + "/lib/middleware/page_not_found"))
 app.use(require(base + "/lib/middleware/render_error"))
 
@@ -157,20 +161,37 @@ app.use(require(base + "/lib/middleware/render_error"))
  * Start server
  */
 
-if (module === require.main) {
+async function start_server() {
+  /**
+   * Initializers
+   */
+
+  await require("./initializers/migrations")(app)
+
+  /**
+   * Start listening for requests.
+   */
+
   const server = app.listen(port, () => {
-    console.log(`Running express.js app on port ${port}`)
+    console.log(`Express app listening on port ${port}`)
   })
   process.on("SIGINT", () => {
+    console.log("Received a SIGINT signal")
     server.close(() => {
       app.locals.db.close()
     })
   })
   process.on("SIGTERM", () => {
+    console.log("Received a SIGTERM signal")
     server.close(() => {
       app.locals.db.close()
     })
   })
+}
+
+if (module === require.main) {
+  debug("Start server")
+  start_server()
 }
 
 /**
