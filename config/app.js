@@ -63,8 +63,8 @@ app.set("views", views)
  */
 
 debug("Mount middleware")
-app.use(require(base + "/lib/middleware/json_body_parser"))
-app.use(require(base + "/lib/middleware/urlencoded_body_parser"))
+app.use(require(base + "/lib/middleware/parsers/json_body_parser"))
+app.use(require(base + "/lib/middleware/parsers/urlencoded_body_parser"))
 
 /**
  * Static assets
