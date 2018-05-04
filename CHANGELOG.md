@@ -12,13 +12,16 @@ Changes are categorized as follows:
 
 ## [Unreleased]
 
-* 5 minor enhancements:
+## 2018-05-03, Version 1.0.1
+
+* 6 minor enhancements:
 
   * Add initial test
   * Update dependencies
   * deps: add g-migration
   * docs: simplify readme
   * deps: update
+  * deps: security update for hoek
 
 ## 2017-11-05, Version 1.0.0
 

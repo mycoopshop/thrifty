@@ -1,6 +1,12 @@
 # Thrifty
 
-Track cashflow for simple finance management.
+Track cashflow for simple finances.
+
+## Requirements
+
+A compiler is required for getting native SQLite3 to work with Electron.
+
+    sudo apt install build-essential
 
 ## Getting started
 
