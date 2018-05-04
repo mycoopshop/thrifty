@@ -26,6 +26,7 @@
     "hoek": "^4.2.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
+    "root-model": "^1.0.0",
     "sqlite3": "^4.0.0",
     "turbolinks": "^5.1.1"
   },
