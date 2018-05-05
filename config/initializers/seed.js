@@ -26,7 +26,7 @@ module.exports = async (app) => {
       await db.query(sql)
     }
   } catch(err) {
-    console.error(err)
+    // Do nothing
   }
 
   return true

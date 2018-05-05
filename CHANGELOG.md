@@ -13,7 +13,7 @@ Changes are categorized as follows:
 
 ## [Unreleased]
 
-* 10 minor enhancements:
+* 11 minor enhancements:
 
   * docs: add github paths
   * deps: add debug
@@ -25,6 +25,7 @@ Changes are categorized as follows:
   * docs: simpler setup with npm
   * config: improve db interface
   * helpers: remove currency_icon
+  * deps: remove d3 
 
 ## 2018-05-03, Version 1.0.1
 

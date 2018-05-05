@@ -11,12 +11,10 @@
     </header>
 
     <main class="container mt-5">
-      <section id="pie_chart"></section>
-
       <section>
         <div class="text-center my-5">
           <h3 id="balance" onclick="show_balance_form()" style="cursor:pointer;">
-            Balance: <i class="fas fa-dollar"></i> <%- user.balance %><br/>
+            Balance: <i class="fas fa-dollar-sign"></i> <%- user.balance %><br/>
             <small class="text-muted">
               (user.balance / total_outflow ) =
               <% if (months_left) { %>
@@ -61,7 +59,7 @@
                 <td>
                 <td <% if (cashflows[i].amount < 0) { %>class="text-danger"<% } %>>
                   <span class="pull-right">
-                    <%- currency_icon(user.currency) %>
+                    <i class="fas fa-dollar-sign"></i>
                     <%- cashflows[i].amount %>
                   </span>
                 </td>
@@ -83,7 +81,7 @@
               </td>
               <td>
                 <span class="pull-right">
-                  <%- currency_icon(user.currency) %>
+                  <i class="fas fa-dollar-sign"></i>
                   <% if (user.currency == 0) { %>
                     <%- total_inflow.toFixed(5) %> /mo
                   <% } else { %>
@@ -101,7 +99,7 @@
               </td>
               <td>
                 <span class="pull-right text-danger">
-                  <%- currency_icon(user.currency) %>
+                  <i class="fas fa-dollar-sign"></i>
                   <% if (user.currency == 0) { %>
                     <%- total_outflow.toFixed(5) %> /mo
                   <% } else { %>
@@ -120,7 +118,7 @@
               <td>
                 <b>
                   <span class="pull-right <% if (netflow < 0) { %>text-danger<% } %>">
-                    <%- currency_icon(user.currency) %>
+                    <i class="fas fa-dollar-sign"></i>
                     <% if (user.currency == 0) { %>
                       <%- netflow.toFixed(5) %> /mo
                     <% } else { %>
@@ -145,7 +143,7 @@
           <h4 class="text-center">
             New Cashflow Form<br/>
             <small class="text-muted">
-              in <%- currency_icon(user.currency) %> per month
+              in <i class="fas fa-dollar-sign"></i> per month
             </small>
           </h4>
 
@@ -177,7 +175,6 @@
     </footer>
   </body>
 
-  <script src="/assets/js/pie_chart.js"></script>
   <script>
     function remove_cashflow(id) {
       let req = new XMLHttpRequest()
