@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron index.js",
-    "rebuild": "electron-rebuild -f -w sqlite3",
-    "setup": "npm install && npm run rebuild"
+    "postinstall": "electron-rebuild"
   },
   "keywords": [
     "desktop",
@@ -27,8 +26,8 @@
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
     "root-model": "^1.0.0",
-    "schema-migrations": "^1.2.0",
-    "sqlite3": "^4.0.0",
+    "schema-migrations": "^2.1.0",
+    "better-sqlite3": "^4.1.0",
     "turbolinks": "^5.1.1"
   },
   "devDependencies": {
@@ -37,7 +36,7 @@
   "engines": {
     "node": ">= 8"
   },
-  "author": "Andy Bettisworth <andy@accreu.com>",
+  "author": "Andy Bettisworth <andy@accreu.com> https://andybettisworth.com",
   "license": "MIT",
   "repository": {
     "type": "git",

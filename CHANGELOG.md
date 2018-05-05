@@ -13,7 +13,7 @@ Changes are categorized as follows:
 
 ## [Unreleased]
 
-* 7 minor enhancements:
+* 8 minor enhancements:
 
   * docs: add github paths
   * deps: add debug
@@ -22,6 +22,7 @@ Changes are categorized as follows:
   * middleware: improve error handler
   * deps: add root-model
   * deps: add schema-migrations
+  * docs: simpler setup with npm
 
 ## 2018-05-03, Version 1.0.1
 
