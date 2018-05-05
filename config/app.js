@@ -36,7 +36,6 @@ app.locals.base = base
 app.locals.env = env
 app.locals.views = views
 app.locals.db = require("./db")(app)
-app.locals.currency_icon = require(base + "/app/helpers/currency_icon")
 
 /**
  * Settings
@@ -105,6 +104,7 @@ app.start_server = async (port=53001) => {
      */
 
     await require("./initializers/migrations")(app)
+    await require("./initializers/seed")(app)
 
     /**
      * Start listening for requests.

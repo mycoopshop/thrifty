@@ -21,15 +21,6 @@ module.exports = (app) => {
 
   router.route("/")
     .get(UsersController.index)
-  // app.post("/users", (req, res) => {
-  //   req.app.locals.db.run(`
-  //     UPDATE users SET
-  //     balance=${req.body.balance},
-  //     currency=${req.body.currency}
-  //     WHERE id=0;`, () =>  {
-  //     res.redirect("/")
-  //   })
-  // })
 
   /**
    * Export router.

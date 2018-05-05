@@ -15,6 +15,16 @@ module.exports = (app) => {
      */
 
     static index(req, res) {
+      // app.post("/users", (req, res) => {
+      //   req.app.locals.db.run(`
+      //     UPDATE users SET
+      //     balance=${req.body.balance},
+      //     currency=${req.body.currency}
+      //     WHERE id=0;`, () =>  {
+      //     res.redirect("/")
+      //   })
+      // })
+
       res.render("index")
     }
   }

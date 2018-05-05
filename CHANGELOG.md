@@ -13,7 +13,7 @@ Changes are categorized as follows:
 
 ## [Unreleased]
 
-* 9 minor enhancements:
+* 10 minor enhancements:
 
   * docs: add github paths
   * deps: add debug
@@ -24,6 +24,7 @@ Changes are categorized as follows:
   * deps: add schema-migrations
   * docs: simpler setup with npm
   * config: improve db interface
+  * helpers: remove currency_icon
 
 ## 2018-05-03, Version 1.0.1
 

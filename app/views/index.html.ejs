@@ -3,7 +3,7 @@
   <head>
     <title>Thrifty</title>
     <meta name="description" content="Freedom via fiscal responsibility.">
-    <%- include(views + '/shared/head.html.ejs') %>
+    <%- include(views + '/shared/_head.html.ejs') %>
   </head>
   <body>
     <header class="mt-3">
@@ -16,9 +16,9 @@
       <section>
         <div class="text-center my-5">
           <h3 id="balance" onclick="show_balance_form()" style="cursor:pointer;">
-            Balance: <%- currency_icon(currency) %> <%- balance %><br/>
+            Balance: <i class="fas fa-dollar"></i> <%- user.balance %><br/>
             <small class="text-muted">
-              (balance / total_outflow ) =
+              (user.balance / total_outflow ) =
               <% if (months_left) { %>
                 <%- months_left %> months
               <% } else { %>
@@ -26,26 +26,14 @@
               <% } %>
             </small>
           </h3>
-          <form id="balance-form"
-                action="/users"
-                method="post"
+
+          <form action="/users" method="post"
+                id="balance-form"
                 class="form form-inline"
                 style="display:none;">
-            <select name="currency"
-                   class="form-control">
-              <option value="0" <% if (currency == 0) { %>selected<% } %>>
-                Bitcoins
-              </option>
-              <option value="1" <% if (currency == 1) { %>selected<% } %>>
-                Dollars
-              </option>
-              <option value="2" <% if (currency == 2) { %>selected<% } %>>
-                Euros
-              </option>
-            </select>
             <input type="number"
                    name="balance"
-                   value="<%- balance %>"
+                   value="<%- user.balance %>"
                    step="0.01"
                    class="form-control"
                    autofocus></input>
@@ -73,7 +61,7 @@
                 <td>
                 <td <% if (cashflows[i].amount < 0) { %>class="text-danger"<% } %>>
                   <span class="pull-right">
-                    <%- currency_icon(currency) %>
+                    <%- currency_icon(user.currency) %>
                     <%- cashflows[i].amount %>
                   </span>
                 </td>
@@ -95,8 +83,8 @@
               </td>
               <td>
                 <span class="pull-right">
-                  <%- currency_icon(currency) %>
-                  <% if (currency == 0) { %>
+                  <%- currency_icon(user.currency) %>
+                  <% if (user.currency == 0) { %>
                     <%- total_inflow.toFixed(5) %> /mo
                   <% } else { %>
                     <%- total_inflow.toFixed(2) %> /mo
@@ -113,8 +101,8 @@
               </td>
               <td>
                 <span class="pull-right text-danger">
-                  <%- currency_icon(currency) %>
-                  <% if (currency == 0) { %>
+                  <%- currency_icon(user.currency) %>
+                  <% if (user.currency == 0) { %>
                     <%- total_outflow.toFixed(5) %> /mo
                   <% } else { %>
                     <%- total_outflow.toFixed(2) %> /mo
@@ -132,8 +120,8 @@
               <td>
                 <b>
                   <span class="pull-right <% if (netflow < 0) { %>text-danger<% } %>">
-                    <%- currency_icon(currency) %>
-                    <% if (currency == 0) { %>
+                    <%- currency_icon(user.currency) %>
+                    <% if (user.currency == 0) { %>
                       <%- netflow.toFixed(5) %> /mo
                     <% } else { %>
                       <%- netflow.toFixed(2) %> /mo
@@ -157,7 +145,7 @@
           <h4 class="text-center">
             New Cashflow Form<br/>
             <small class="text-muted">
-              in <%- currency_icon(currency) %> per month
+              in <%- currency_icon(user.currency) %> per month
             </small>
           </h4>
 
