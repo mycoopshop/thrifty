@@ -22,7 +22,6 @@ const app = express()
 
 debug("Constants")
 const title = "Thrifty"
-const port = 53001
 const base = path.join(__dirname, "..")
 const env = process.env.NODE_ENV || "development"
 const views = path.join(base, "/app/views")
@@ -33,7 +32,6 @@ const views = path.join(base, "/app/views")
 
 debug("Locals")
 app.locals.title = title
-app.locals.port = port
 app.locals.base = base
 app.locals.env = env
 app.locals.views = views
@@ -97,40 +95,37 @@ app.use(require(base + "/lib/middleware/errors/page_not_found"))
 app.use(require(base + "/lib/middleware/errors/render_error"))
 
 /**
- * Start server
+ * Define server startup.
  */
 
-async function start_server() {
-  /**
-   * Initializers
-   */
+app.start_server = async (port=53001) => {
+  try {
+    /**
+     * Initializers
+     */
 
-  await require("./initializers/migrations")(app)
+    await require("./initializers/migrations")(app)
 
-  /**
-   * Start listening for requests.
-   */
+    /**
+     * Start listening for requests.
+     */
 
-  const server = app.listen(port, () => {
-    console.log(`Express app listening on port ${port}`)
-  })
-  process.on("SIGINT", () => {
-    console.log("Received a SIGINT signal")
-    server.close(() => {
-      app.locals.db.close()
+    const server = app.listen(port, () => {
+      console.log(`Express app listening on port ${port}\n`)
     })
-  })
-  process.on("SIGTERM", () => {
-    console.log("Received a SIGTERM signal")
-    server.close(() => {
-      app.locals.db.close()
-    })
-  })
+  } catch(err) {
+    console.error(err)
+    process.exit(1)
+  }
 }
+
+/**
+ * Start server if called as a script.
+ */
 
 if (module === require.main) {
   debug("Start server")
-  start_server()
+  app.start_server()
 }
 
 /**

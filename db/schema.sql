@@ -1,15 +1,28 @@
-CREATE TABLE schema_migrations (
-  version text UNIQUE ON CONFLICT IGNORE
+BEGIN TRANSACTION;
+
+/*
+  Schema migrations
+*/
+
+CREATE TABLE IF NOT EXISTS schema_migrations (
+  version integer PRIMARY KEY
 );
 
-CREATE TABLE cashflows (
-  id integer PRIMARY KEY AUTOINCREMENT,
+/*
+  Financial management
+*/
+
+CREATE TABLE IF NOT EXISTS cashflows (
+  id integer PRIMARY KEY,
   amount integer DEFAULT 0,
   description text
 );
 
-CREATE TABLE users (
-  id integer UNIQUE,
+CREATE TABLE IF NOT EXISTS users (
+  id integer PRIMARY KEY,
   balance integer DEFAULT 0,
   currency integer DEFAULT 0
 );
+-- INSERT INTO users (id, balance, currency) VALUES (0, 0, 0);
+
+COMMIT;
