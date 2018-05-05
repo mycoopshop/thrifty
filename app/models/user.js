@@ -21,7 +21,7 @@ module.exports = (app) => {
      * User.find_by_id(req.param.id)
      *
      * @static @method
-     * @since 1.0.4
+     * @since 1.0.1
      * @param {Number} id - primary key of a resource.
      * @returns {User|null} - User or null.
      * @public
@@ -45,7 +45,7 @@ module.exports = (app) => {
      * let container = new User({}, req, res)
      *
      * @method
-     * @since 1.0.4
+     * @since 1.0.1
      * @param {Object} param - instance key values.
      * @param {Object} req - Express Request object.
      * @param {Object} res - Express Response object.
@@ -62,7 +62,7 @@ module.exports = (app) => {
      * Assignment using strong parameters.
      *
      * @method
-     * @since 1.0.4
+     * @since 1.0.1
      * @param {Object} param - instance key values.
      * @return {User}
      * @public
@@ -72,7 +72,9 @@ module.exports = (app) => {
       let assignment_err = this.assignment(param, {
         id: "string_or_number_or_null?",
         balance: "string_or_number_or_null?",
-        currency: "string_or_number_or_null?"
+        currency: "string_or_number_or_null?",
+        modified_at: "date_or_string_or_null?",
+        created_at: "date_or_string_or_null?"
       })
 
       if (assignment_err) {
@@ -80,6 +82,35 @@ module.exports = (app) => {
         this.errors.messages.push("Malformed model parameters.")
         this.errors.codes.push("malformed_model_param")
       }
+    }
+
+    /**
+     * Update a database record.
+     *
+     * @example
+     *
+     * user.strong_param(req.body)
+     * await user.update()
+     *
+     * @method
+     * @since 1.0.1
+     * @return {User|null} - a User or null.
+     * @public
+     */
+
+    async update() {
+      let results = await db.prepare(`
+        UPDATE users
+        SET
+          balance = $balance,
+          modified_at = datetime('now')
+        WHERE id = $id;
+      `).run({
+        id: this.id,
+        balance: this.balance
+      })
+
+      return true
     }
   }
 

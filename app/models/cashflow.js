@@ -37,6 +37,8 @@ module.exports = (app) => {
       return results
     }
 
+    // TODO req.app.locals.db.run(`DELETE FROM cashflows WHERE id=${req.params.id};`, () => {
+
     /**
      * Construct a model instance.
      *
@@ -81,6 +83,14 @@ module.exports = (app) => {
         this.errors.codes.push("malformed_model_param")
       }
     }
+
+    // TODO
+    // req.app.locals.db.run(`
+    //   INSERT INTO cashflows (
+    //     amount,
+    //     description
+    //   ) VALUES (?, ?);
+    // `, [req.body.amount, req.body.description], () => {
   }
 
   /**

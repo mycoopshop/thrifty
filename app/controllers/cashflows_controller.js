@@ -7,40 +7,41 @@ module.exports = (app) => {
 
   class CashflowsController {
     /**
-     * Render index page.
+     * Create cashflow.
      *
      * @static @method
-     * @since 1.0.4
+     * @since 1.0.1
      * @public
      */
 
-    static index(req, res) {
-      // app.post("/cashflows", (req, res) => {
-      //   if (req.body.constructor === Object) {
-      //     let keys = Object.keys(req.body)
-      //     if (keys.includes("amount") && keys.includes("description")) {
-      //       req.app.locals.db.run(`
-      //         INSERT INTO cashflows (
-      //           amount,
-      //           description
-      //         ) VALUES (?, ?);
-      //       `, [req.body.amount, req.body.description], () => {
-      //         res.redirect("/")
-      //       })
-      //     } else {
-      //       res.sendStatus(400)
-      //     }
-      //   } else {
-      //     res.sendStatus(400)
-      //   }
-      // })
-      // app.delete("/cashflows/:id", (req, res) => {
-      //   req.app.locals.db.run(`DELETE FROM cashflows WHERE id=${req.params.id};`, () => {
-      //     res.redirect("/")
-      //   })
-      // })
+    static async create(req, res) {
+      try {
+        let cashflow = new Cashflow(req.body)
+        await cashflow.create()
 
-      res.render("index")
+        res.redirect("/")
+      } catch(err) {
+        console.error("CashflowsController#create", err)
+        next(err)
+      }
+    }
+    /**
+     * Delete cashflow.
+     *
+     * @static @method
+     * @since 1.0.1
+     * @public
+     */
+
+    static async delete(req, res) {
+      try {
+        await Cashflow.delete(req.params.id)
+
+        res.redirect("/")
+      } catch(err) {
+        console.error("CashflowsController#delete", err)
+        next(err)
+      }
     }
   }
 

@@ -2,30 +2,39 @@
 
 module.exports = (app) => {
   /**
+   * Dependencies
+   */
+
+  const base = app.locals.base
+  const User = require(base + "/app/models/user")(app)
+
+  /**
    * Define controller
    */
 
   class UsersController {
     /**
-     * Render index page.
+     * Update user.
      *
      * @static @method
-     * @since 1.0.4
+     * @since 1.0.1
      * @public
      */
 
-    static index(req, res) {
-      // app.post("/users", (req, res) => {
-      //   req.app.locals.db.run(`
-      //     UPDATE users SET
-      //     balance=${req.body.balance},
-      //     currency=${req.body.currency}
-      //     WHERE id=0;`, () =>  {
-      //     res.redirect("/")
-      //   })
-      // })
+    static async update(req, res) {
+      try {
+        let user = await User.find_by_id(req.params.id)
 
-      res.render("index")
+        if (user) {
+          user.strong_param(req.body)
+          await user.update()
+        }
+
+        res.redirect("/")
+      } catch(err) {
+        console.error("UsersController#update", err)
+        next(err)
+      }
     }
   }
 

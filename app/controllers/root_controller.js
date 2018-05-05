@@ -18,7 +18,7 @@ module.exports = (app) => {
      * Render index page.
      *
      * @static @method
-     * @since 1.0.4
+     * @since 1.0.1
      * @public
      */
 
@@ -56,6 +56,18 @@ module.exports = (app) => {
         console.error("RootController#index", err)
         next(err)
       }
+    }
+
+    /**
+     * Redirect to index page.
+     *
+     * @static @method
+     * @since 1.0.1
+     * @public
+     */
+
+    static async redirect_to_index(req, res) {
+      res.redirect("/")
     }
   }
 

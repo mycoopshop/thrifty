@@ -80,8 +80,6 @@ app.use("/assets/js", express.static(base + "/node_modules/turbolinks/dist"))
 
 debug("Mount routes")
 app.use("/", require("./routes/root_router")(app))
-app.use("/cashflows", require("./routes/cashflows_router")(app))
-app.use("/users", require("./routes/users_router")(app))
 
 /**
  * Error handlers

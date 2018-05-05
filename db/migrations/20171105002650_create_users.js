@@ -10,7 +10,9 @@ BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS users (
   id integer PRIMARY KEY,
   balance integer DEFAULT 0,
-  currency integer DEFAULT 0
+  currency integer DEFAULT 0,
+  modified_at datetime DEFAULT CURRENT_TIMESTAMP,
+  created_at datetime DEFAULT CURRENT_TIMESTAMP
 );
 
 COMMIT;

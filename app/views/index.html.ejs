@@ -25,7 +25,7 @@
             </small>
           </h3>
 
-          <form action="/users" method="post"
+          <form action="/users/<%- user.id %>" method="post"
                 id="balance-form"
                 class="form form-inline"
                 style="display:none;">
@@ -35,7 +35,7 @@
                    step="0.01"
                    class="form-control"
                    autofocus></input>
-            <button class="btn btn-md btn-light" style="cursor:pointer;">Update</button>
+            <button type="submit" class="btn btn-md btn-light" style="cursor:pointer;">Update</button>
           </form>
         </div>
       </section>
