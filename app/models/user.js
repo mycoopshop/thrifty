@@ -99,17 +99,34 @@ module.exports = (app) => {
      */
 
     async update() {
-      let results = await db.prepare(`
-        UPDATE users
-        SET
-          balance = $balance,
-          modified_at = datetime('now')
-        WHERE id = $id;
-      `).run({
-        id: this.id,
-        balance: this.balance
-      })
+      if (this.errors.count === 0 && await this.is_valid()) {
 
+        let results = await db.prepare(`
+          UPDATE users
+          SET
+            balance = $balance,
+            modified_at = datetime('now')
+          WHERE id = $id
+        `).run({
+          id: this.id,
+          balance: this.balance
+        })
+
+        return true
+      } else {
+        throw Error(this.errors.codes)
+      }
+    }
+
+    /**
+     * Validates the model adding errors as they are found.
+     *
+     * @method
+     * @since 1.0.1
+     * @private
+     */
+
+    async validate() {
       return true
     }
   }

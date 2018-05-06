@@ -23,6 +23,7 @@ module.exports = async (app) => {
   try {
     if (fs.existsSync(seed_sql_path)) {
       let sql = fs.readFileSync(seed_sql_path, "utf8")
+      console.log("seed", sql)
       await db.query(sql)
     }
   } catch(err) {

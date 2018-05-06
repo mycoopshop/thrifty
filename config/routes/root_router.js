@@ -30,8 +30,8 @@ module.exports = (app) => {
     .get(RootController.redirect_to_index)
     .post(UsersController.update)
 
-  // POST /cashflows
-  router.route("/cashflows")
+  // POST /users/:id/cashflows
+  router.route("/users/:id/cashflows")
     .get(RootController.redirect_to_index)
     .post(CashflowsController.create)
 

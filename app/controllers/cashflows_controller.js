@@ -2,6 +2,14 @@
 
 module.exports = (app) => {
   /**
+   * Dependencies
+   */
+
+  const base = app.locals.base
+  const User = require(base + "/app/models/user")(app)
+  const Cashflow = require(base + "/app/models/cashflow")(app)
+
+  /**
    * Define controller
    */
 
@@ -16,8 +24,12 @@ module.exports = (app) => {
 
     static async create(req, res) {
       try {
-        let cashflow = new Cashflow(req.body)
-        await cashflow.create()
+        let user = await User.find_by_id(req.body)
+
+        if (user) {
+          let cashflow = new Cashflow(req.body)
+          await cashflow.create()
+        }
 
         res.redirect("/")
       } catch(err) {

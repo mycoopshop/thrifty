@@ -37,7 +37,7 @@ module.exports = (app) => {
       return results
     }
 
-    // TODO req.app.locals.db.run(`DELETE FROM cashflows WHERE id=${req.params.id};`, () => {
+    // TODO req.app.locals.db.run(`DELETE FROM cashflows WHERE id=${req.params.id}`, () => {
 
     /**
      * Construct a model instance.
@@ -73,24 +73,69 @@ module.exports = (app) => {
     strong_param(param) {
       let assignment_err = this.assignment(param, {
         id: "string_or_number_or_null?",
+        user_id: "string_or_number_or_null?",
         balance: "string_or_number_or_null?",
-        currency: "string_or_number_or_null?"
+        currency: "string_or_number_or_null?",
+        modified_at: "date_or_string_or_null?",
+        created_at: "date_or_string_or_null?"
       })
 
       if (assignment_err) {
-        console.error("User#strong_param", assignment_err)
+        console.error("Cashflow#strong_param", assignment_err)
         this.errors.messages.push("Malformed model parameters.")
         this.errors.codes.push("malformed_model_param")
       }
     }
 
-    // TODO
-    // req.app.locals.db.run(`
-    //   INSERT INTO cashflows (
-    //     amount,
-    //     description
-    //   ) VALUES (?, ?);
-    // `, [req.body.amount, req.body.description], () => {
+    /**
+     * Create a database record.
+     *
+     * @example
+     *
+     * let cashflow = new Cashflow(req.body)
+     * await cashflows.create()
+     *
+     * @method
+     * @since 1.0.1
+     * @return {Cashflow|null} - a Cashflow or null.
+     * @public
+     */
+
+    async create() {
+      if (this.errors.count === 0 && await this.is_valid()) {
+        let results = await db.prepare(`
+          INSERT INTO cashflows (
+            user_id,
+            amount,
+            description
+          ) VALUES (
+            $user_id,
+            $amount,
+            $description
+          )
+        `).run({
+          user_id: this.user_id,
+          amount: this.amount,
+          description: this.description
+        })
+
+        return true
+      } else {
+        throw Error(this.errors.codes)
+      }
+    }
+
+    /**
+     * Validates the model adding errors as they are found.
+     *
+     * @method
+     * @since 1.0.1
+     * @private
+     */
+
+    async validate() {
+      return true
+    }
   }
 
   /**
