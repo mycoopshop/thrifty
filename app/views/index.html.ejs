@@ -56,21 +56,24 @@
           <tbody>
             <% for (let i=0; i < cashflows.length; i++) { %>
               <tr>
-                <td>
+                <td></td>
+
                 <td <% if (cashflows[i].amount < 0) { %>class="text-danger"<% } %>>
                   <span class="pull-right">
-                    $
-                    <%- cashflows[i].amount %>
+                    $ <%- cashflows[i].amount %>
                   </span>
                 </td>
+
                 <td><%- cashflows[i].description %></td>
+
                 <td width="50px;" class="text-muted">
-                  <button type="button"
-                          onclick="remove_cashflow(<%- cashflows[i].id %>);"
-                          class="btn btn-sm btn-link"
-                          style="color:#DDD;cursor:pointer;">
-                    <i class="fa fa-close"></i>
-                  </button>
+                  <form action="/cashflows/<%- cashflows[i].id %>/delete" method="post">
+                    <button type="submit"
+                            class="btn btn-sm btn-link"
+                            style="color:#DDD;cursor:pointer;">
+                      <i class="fa fa-close"></i>
+                    </button>
+                  </form>
                 </td>
               </tr>
             <% } %>
@@ -165,19 +168,6 @@
       </div>
     </footer>
   </body>
-
-  <script>
-    function remove_cashflow(id) {
-      let req = new XMLHttpRequest()
-      req.onreadystatechange = () => {
-        if (req.readyState === XMLHttpRequest.DONE) {
-          window.location.reload(true)
-        }
-      }
-      req.open("DELETE", `/cashflows/` + id)
-      req.send()
-    }
-  </script>
 
   <script>
     function show_balance_form() {

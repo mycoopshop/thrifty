@@ -21,7 +21,7 @@ module.exports = (app) => {
      * Cashflow.all_by_user_id(req.param.user_id)
      *
      * @static @method
-     * @since 1.0.4
+     * @since 1.0.1
      * @param {Number} user_id - foreign key of a resource.
      * @returns {Cashflow|null} - Cashflow or null.
      * @public
@@ -31,27 +31,42 @@ module.exports = (app) => {
       let results = await db.prepare("SELECT * FROM cashflows WHERE user_id = $user_id").all({user_id: user_id})
 
       for (let i=0; i < results.length; i++) {
-        results[i] = new User(results[i])
+        results[i] = new Cashflow(results[i])
       }
 
       return results
     }
 
-    // TODO req.app.locals.db.run(`DELETE FROM cashflows WHERE id=${req.params.id}`, () => {
+    /**
+     * Delete a record.
+     *
+     * @example
+     *
+     * Cashflow.delete(req.params.id)
+     *
+     * @static @method
+     * @since 1.0.1
+     * @param {Number} id - primary key of a resource.
+     * @public
+     */
+
+    static async delete(id) {
+      await db.prepare("DELETE FROM cashflows WHERE id = $id").run({id: id})
+    }
 
     /**
      * Construct a model instance.
      *
      * @example
      *
-     * let container = new User({}, req, res)
+     * let container = new Cashflow({}, req, res)
      *
      * @method
-     * @since 1.0.4
+     * @since 1.0.1
      * @param {Object} param - instance key values.
      * @param {Object} req - Express Request object.
      * @param {Object} res - Express Response object.
-     * @return {User}
+     * @return {Cashflow}
      * @public
      */
 
@@ -64,7 +79,7 @@ module.exports = (app) => {
      * Assignment using strong parameters.
      *
      * @method
-     * @since 1.0.4
+     * @since 1.0.1
      * @param {Object} param - instance key values.
      * @return {User}
      * @public
@@ -74,8 +89,8 @@ module.exports = (app) => {
       let assignment_err = this.assignment(param, {
         id: "string_or_number_or_null?",
         user_id: "string_or_number_or_null?",
-        balance: "string_or_number_or_null?",
-        currency: "string_or_number_or_null?",
+        amount: "string_or_number_or_null?",
+        description: "string_or_null?",
         modified_at: "date_or_string_or_null?",
         created_at: "date_or_string_or_null?"
       })

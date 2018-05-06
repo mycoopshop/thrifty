@@ -24,7 +24,7 @@ module.exports = (app) => {
 
     static async create(req, res) {
       try {
-        let user = await User.find_by_id(req.body)
+        let user = await User.find_by_id(req.params.id)
 
         if (user) {
           let cashflow = new Cashflow(req.body)
