@@ -5,7 +5,7 @@ BEGIN TRANSACTION;
 */
 
 CREATE TABLE IF NOT EXISTS schema_migrations (
-  version integer PRIMARY KEY
+  version numeric PRIMARY KEY
 );
 
 /*

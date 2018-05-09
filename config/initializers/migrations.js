@@ -5,29 +5,15 @@ module.exports = async (app) => {
    * Dependencies
    */
 
+  const base = app.locals.base
+  const db = app.locals.db
   const SchemaMigrations = require("schema-migrations")
 
   /**
-   * Constants
+   * Run pending migrations.
    */
 
-  const base = app.locals.base
-  const db = app.locals.db
-
-  /**
-   * Configure schema migrations.
-   */
-
-  let config = {
-    type: "sqlite",
-    close: false
-  }
-
-  /**
-   * Run all pending migrations.
-   */
-
-  let schema_migrations = new SchemaMigrations(base, db, config)
+  let schema_migrations = new SchemaMigrations(base, db, "sqlite")
 
   try {
     await schema_migrations.run()

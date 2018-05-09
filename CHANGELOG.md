@@ -13,6 +13,12 @@ Changes are categorized as follows:
 
 ## [Unreleased]
 
+## 2018-05-09, Version 1.3.0
+
+* 1 minor enhancements:
+
+  * deps: update schema_migrations 4.0.0
+
 ## 2018-05-05, Version 1.2.0
 
 * 12 minor enhancements:

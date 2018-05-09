@@ -5,6 +5,8 @@ module.exports = async (app) => {
    * Dependencies
    */
 
+  const base = app.locals.base
+  const db = app.locals.db
   const fs = require("fs")
   const path = require("path")
 
@@ -12,8 +14,6 @@ module.exports = async (app) => {
    * Constants
    */
 
-  const base = app.locals.base
-  const db = app.locals.db
   const seed_sql_path = path.join(base, "db", "seed.sql")
 
   /**
